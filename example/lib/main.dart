@@ -8,8 +8,6 @@ import 'positioning_demo.dart';
 import 'utils.dart';
 
 void main() async {
-  setTargetPlatformForDesktop();
-
   WidgetsFlutterBinding.ensureInitialized();
   await TimeMachine.initialize({'rootBundle': rootBundle});
   runApp(ExampleApp(child: TimetableExample()));
