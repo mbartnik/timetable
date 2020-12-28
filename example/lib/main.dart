@@ -9,7 +9,7 @@ import 'utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await TimeMachine.initialize({'rootBundle': rootBundle});
+  await TimeMachine.initialize(<dynamic, dynamic>{'rootBundle': rootBundle});
   runApp(ExampleApp(child: TimetableExample()));
 }
 

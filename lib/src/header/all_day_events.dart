@@ -46,7 +46,7 @@ class AllDayEvents<E extends Event> extends StatelessWidget {
                   events =
                       events.where((e) => e.intersectsInterval(visibleDates));
 
-                  return ValueListenableBuilder(
+                  return ValueListenableBuilder<double>(
                     valueListenable:
                         controller.scrollControllers.pageListenable,
                     builder: (context, page, __) =>
