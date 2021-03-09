@@ -1,6 +1,7 @@
 import 'package:black_hole_flutter/black_hole_flutter.dart';
 import 'package:flutter/widgets.dart';
 import 'package:time_machine/time_machine.dart';
+import 'package:timetable/src/content/single_date_content.dart';
 
 import '../controller.dart';
 import '../event.dart';
@@ -16,6 +17,7 @@ class TimetableContent<E extends Event> extends StatelessWidget {
     @required this.controller,
     @required this.eventBuilder,
     this.onEventBackgroundTap,
+    this.singleDate = false
   })  : assert(controller != null),
         assert(eventBuilder != null),
         super(key: key);
@@ -23,6 +25,7 @@ class TimetableContent<E extends Event> extends StatelessWidget {
   final TimetableController<E> controller;
   final EventBuilder<E> eventBuilder;
   final OnEventBackgroundTapCallback onEventBackgroundTap;
+  final bool singleDate;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +55,11 @@ class TimetableContent<E extends Event> extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: MultiDateContent<E>(
+            child: singleDate ? SingleDateContent<E>(
+              controller: controller,
+              eventBuilder: eventBuilder,
+              onEventBackgroundTap: onEventBackgroundTap,
+            ) : MultiDateContent<E>(
               controller: controller,
               eventBuilder: eventBuilder,
               onEventBackgroundTap: onEventBackgroundTap,

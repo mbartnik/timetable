@@ -44,6 +44,7 @@ class Timetable<E extends Event> extends StatelessWidget {
     this.theme,
     this.dateHeaderBuilder,
     this.leadingHeaderBuilder,
+    this.singleDate = false
   })  : assert(controller != null),
         assert(eventBuilder != null),
         super(key: key);
@@ -73,6 +74,9 @@ class Timetable<E extends Event> extends StatelessWidget {
   /// day of month will be shown.
   final HeaderWidgetBuilder dateHeaderBuilder;
 
+  ///Set to true to disable swiping to change to dates in visible range.
+  final bool singleDate;
+
   @override
   Widget build(BuildContext context) {
     Widget child = Column(
@@ -90,6 +94,7 @@ class Timetable<E extends Event> extends StatelessWidget {
             controller: controller,
             eventBuilder: eventBuilder,
             onEventBackgroundTap: onEventBackgroundTap,
+            singleDate: singleDate,
           ),
         ),
       ],
