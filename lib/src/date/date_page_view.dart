@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:timetable/src/date/visible_date_range.dart';
 
 import '../utils.dart';
 import 'controller.dart';
@@ -59,9 +60,12 @@ class _DatePageViewState extends State<DatePageView> {
 
   @override
   Widget build(BuildContext context) {
+    final daysVisibleDateRange = widget.controller.value.visibleRange as DaysVisibleDateRange;
     Widget child = Scrollable(
       axisDirection: AxisDirection.right,
-      physics: DateScrollPhysics(widget.controller),
+      physics: (daysVisibleDateRange.minDate != null && daysVisibleDateRange.maxDate != null
+      && daysVisibleDateRange.minDate!.difference(daysVisibleDateRange.maxDate!).inDays > 0)
+          ? DateScrollPhysics(widget.controller) : NeverScrollableScrollPhysics(),
       controller: _scrollController,
       viewportBuilder: (context, position) {
         return Viewport(
